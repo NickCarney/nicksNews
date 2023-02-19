@@ -15,23 +15,24 @@ print("date and time =", dt_string)
 url = 'https://www.premierleague.com/tables'
 data = requests.get(url)
 
-#print(data.text)
-
 my_data = []
+teamDictionary = {}
 
 html = BeautifulSoup(data.text, 'html.parser')
-articles = html.select('tr')
-print(articles)
+rows = html.find_all(attrs={"data-compseason": "489"})
 
-rank = 0
+
+rank = 0 
 counter = 0
 print("Premier League Table on",dt_string)
-for article in articles:
+for row in rows[1:]:
     rank+=1
     #name = article.select('.teamName')[0].get_text()
     #str = "a./clubs/1/"+name+"/overview"   
     #my_data.append({rank: name})
-    row = article.findAll('td')
+
+
+    row = row.findAll('td')
     currPosition = row[1].find('span', {'class': 'value'})
     prevPosition = row[1].find('span', {'class': 'resultHighlight'}).text.strip()
     team = row[2].find('span', {'class': 'long'}).text
@@ -50,18 +51,8 @@ for article in articles:
         formAbv.append(form.find('abbr').text)
     
     print(team,gamesPlayed,gamesWon,draws,gamesLoss,goalsFor,goalsAg,goalDiff,points,formAbv)
+    teamDictionary[team] = [gamesPlayed,gamesWon,draws,gamesLoss,goalsFor,goalsAg,goalDiff,points,formAbv]
 
-#pointsList = html.find_all('a', class_=None)
-# table = html.find('table')
-# body = html.find('tbody')
-# rows = html.find_all('tr')
-# for row in rows:
-#     #print(row)
-    
-#     #my_data.append({"row": row})
-#     row = row.find_all('td')
-#     currentPos = row[1].find('span',{'class':'value'}).text
-#     lastPos = row[1].find('span',{'class':'resultHighlight'}).text
-#     break
         
-pprint(my_data[:20])
+# pprint(my_data[:20])
+print(teamDictionary)
