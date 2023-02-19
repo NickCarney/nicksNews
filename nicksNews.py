@@ -15,28 +15,25 @@ print("date and time =", dt_string)
 url = 'https://www.premierleague.com/tables'
 data = requests.get(url)
 
-#print(data.text)
-
 my_data = []
+teamDictionary = {}
 
 html = BeautifulSoup(data.text, 'html.parser')
-#articles = html.select('tr')
-articles = html.select('a.expandableTeam')
+articles = html.select('tr')
 print(articles)
 
-rank = 0
+rank = 0 
 counter = 0
 print("Premier League Table on",dt_string)
 for article in articles:
-    print(article)
     rank+=1
-    name = article.select('.teamName')[0].get_text()
-    str = "a./clubs/1/"+name+"/overview"   
-    my_data.append({rank: name})
-    # row = article.findAll('td')
-    # currPosition = row[1].find('span', {'class': 'value'})
-    # prevPosition = row[1].find('span', {'class': 'resultHighlight'}).text.strip()
-    # team = row[2].find('span', {'class': 'long'}).text
+    #name = article.select('.teamName')[0].get_text()
+    #str = "a./clubs/1/"+name+"/overview"   
+    #my_data.append({rank: name})
+    row = article.findAll('td')
+    currPosition = row[1].find('span', {'class': 'value'})
+    prevPosition = row[1].find('span', {'class': 'resultHighlight'}).text.strip()
+    team = row[2].find('span', {'class': 'long'}).text
 
     # gamesPlayed = row[3].text
 
@@ -51,7 +48,7 @@ for article in articles:
     # for form in row[11].find_all('li'):
     #     formAbv.append(form.find('abbr').text)
     
-    # print(team,gamesPlayed,gamesWon,draws,gamesLoss,goalsFor,goalsAg,goalDiff,points,formAbv)
+    print(team,gamesPlayed,gamesWon,draws,gamesLoss,goalsFor,goalsAg,goalDiff,points,formAbv)
 
 #pointsList = html.find_all('a', class_=None)
 # table = html.find('table')
@@ -66,7 +63,8 @@ for article in articles:
 #     lastPos = row[1].find('span',{'class':'resultHighlight'}).text
 #     break
         
-pprint(my_data[:20])
+# pprint(my_data[:20])
+print(teamDictionary)
 
 
 def showUpcoming():
