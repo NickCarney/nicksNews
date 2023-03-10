@@ -13,12 +13,12 @@ for table in soup.find_all('table'):
     rows = table.find_all('tr')
     for row in rows:
         if('data-stat' in row):
-            name = row.get('data-stat')
-            print(name)
-        data = row.find_all('td')
+            name = row.get('th')
+            print(name.text)
+        data = row.find_all('td',class_=True)
         for datum in data:   
-            if(row['class']):
-                print(row['class'][0],end=":")        
+            #if(datum['class']):
+            print(datum['class'][0],end=":")        
             print(datum.text)
     print()
 
