@@ -30,10 +30,16 @@ for article in articles:
     #name = article.select('.teamName')[0].get_text()
     #str = "a./clubs/1/"+name+"/overview"   
     #my_data.append({rank: name})
-    row = article.findAll('td')
-    currPosition = row[1].find('span', {'class': 'value'})
-    prevPosition = row[1].find('span', {'class': 'resultHighlight'}).text.strip()
-    team = row[2].find('span', {'class': 'long'}).text
+    row = article.findAll('main')
+    games = row.find('div', {'class': 'jsx-627093717 gameScoreRow'})
+    team1 = row.find('div', {'class': 'jsx-627093717 teamName'})
+    score1 = row.find('div', {'class': 'jsx-627093717 teamName'})
+    team2 = row.find('div', {'class': 'jsx-627093717 teamName'})
+    score2 = row.find('div', {'class': 'jsx-627093717 teamName'})
+
+    print(games)
+    #prevPosition = row[1].find('span', {'class': 'resultHighlight'}).text.strip()
+    #team = row[2].find('span', {'class': 'long'}).text
 
     # gamesPlayed = row[3].text
 
@@ -48,7 +54,7 @@ for article in articles:
     # for form in row[11].find_all('li'):
     #     formAbv.append(form.find('abbr').text)
     
-    print(team,gamesPlayed,gamesWon,draws,gamesLoss,goalsFor,goalsAg,goalDiff,points,formAbv)
+    #print(team,gamesPlayed,gamesWon,draws,gamesLoss,goalsFor,goalsAg,goalDiff,points,formAbv)
 
 #pointsList = html.find_all('a', class_=None)
 # table = html.find('table')
