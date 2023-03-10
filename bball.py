@@ -16,8 +16,10 @@ for table in soup.find_all('table'):
             name = row.get('data-stat')
             print(name)
         data = row.find_all('td')
-        for datum in data:           
-            print(datum.text, end=' ')
+        for datum in data:   
+            if(row['class']):
+                print(row['class'][0],end=":")        
+            print(datum.text)
     print()
 
     
