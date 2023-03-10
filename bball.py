@@ -12,11 +12,12 @@ head = table.find('thead')
 for table in soup.find_all('table'):
     rows = table.find_all('tr')
     for row in rows:
-        name = row.get('data-stat')
-        print(name)
+        if('data-stat' in row):
+            name = row.get('data-stat')
+            print(name)
         data = row.find_all('td')
         for datum in data:           
-            print(checkNone(datum.text), end=',')
+            print(datum.text, end=' ')
     print()
 
     
