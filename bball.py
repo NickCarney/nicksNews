@@ -1,5 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
+from conversion import *
  
 URL = f'https://www.basketball-reference.com/boxscores/'
 page = requests.get(URL)
@@ -14,10 +15,8 @@ for table in soup.find_all('table'):
         name = row.get('data-stat')
         print(name)
         data = row.find_all('td')
-        for datum in data:
-            if(datum.type != None):
-                pass
-            print(datum.text, end=',')
+        for datum in data:           
+            print(checkNone(datum.text), end=',')
     print()
 
     
