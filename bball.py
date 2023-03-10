@@ -15,6 +15,8 @@ for table in soup.find_all('table'):
         print(name)
         data = row.find_all('td')
         for datum in data:
+            if(datum.type!=None):
+                continue
             print(datum.text, end=',')
     print()
 
