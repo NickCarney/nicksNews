@@ -116,7 +116,7 @@ for data in westernRows:
     data = data.find_all('td')
     data = [checkFloat(i.text) for i in data]
 
-    westernData[team] = data
+    westernData[team] = data+'\n'
     
     
 print(easternData,westernData)
