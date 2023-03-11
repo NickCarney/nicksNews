@@ -3,8 +3,8 @@ from bs4 import BeautifulSoup
 from conversions import *
 
 
-def getGameData(month,day,year):
-    URL = f'https://www.basketball-reference.com/boxscores/?month={month}&day={day}&year={year}'
+def getGameData():
+    URL = f'https://www.basketball-reference.com/boxscores/'
     page = requests.get(URL)
     soup = BeautifulSoup(page.content, "html.parser")
 
