@@ -81,11 +81,11 @@ for game in games[1:]:
 
 
     
-    # for key in data:
-    #     print(f'{key} : {data[key]}')
+    for key in data:
+        print(f'{key} : {data[key]}')
 
 
-    # print('\n----------------------------------------\n')
+    print('\n----------------------------------------\n')
     #This should be a function that returns the data dictionary
 
 
